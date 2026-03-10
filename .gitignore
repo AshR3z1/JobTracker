@@ -1,0 +1,12 @@
+# Node
+node_modules/
+dist/
+
+# .NET
+bin/
+obj/
+appsettings.Development.json
+*.user
+
+# VS Code
+.vscode/
