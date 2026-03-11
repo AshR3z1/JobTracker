@@ -1,0 +1,27 @@
+<div class="job-form-container">
+  <h3>Add New Job Application</h3>
+  
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Company Name</label>
+      <input formControlName="companyName" placeholder="e.g. Google" />
+    </div>
+
+    <div>
+      <label>Position</label>
+      <input formControlName="position" placeholder="e.g. Software Engineer" />
+    </div>
+
+    <div>
+      <label>Description</label>
+      <textarea formControlName="description"></textarea>
+    </div>
+
+    <div>
+      <label>Job Link</label>
+      <input formControlName="jobLink" placeholder="http://..." />
+    </div>
+
+    <button type="submit" [disabled]="jobForm.invalid">Save Job</button>
+  </form>
+</div>

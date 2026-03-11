@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { provideHttpClient } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from "./register/register.component";
+import { JobAddComponent } from './job-add/job-add.component';
+import { authInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent 
+    AppComponent,
+    JobAddComponent 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     LoginComponent,    
-    RegisterComponent  
+    RegisterComponent,
+    ReactiveFormsModule  
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideHttpClient()
+    provideHttpClient(withInterceptors([authInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
