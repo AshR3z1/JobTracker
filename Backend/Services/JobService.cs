@@ -38,5 +38,23 @@ namespace Backend.Services
                 .Where(j => j.UserId == userId)
                 .ToListAsync();
         }
+
+        public async Task<bool> UpdateJobStatusAsync(int jobId, string status, string userId)
+        {
+            var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == jobId && j.UserId == userId);
+            if (job == null) return false;
+
+            job.Status = status.ToLower() switch
+            {
+                "pending" => JobStatus.Pending,
+                "interviewing" => JobStatus.Interviewing,
+                "rejected" => JobStatus.Rejected,
+                "accepted" => JobStatus.Accepted,
+                _ => job.Status 
+            };
+
+            _context.Jobs.Update(job);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

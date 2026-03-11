@@ -7,5 +7,6 @@ namespace Backend.Services
     {
         Task<Job> AddJobAsync(JobCreateDto jobDto, string userId);
         Task<IEnumerable<Job>> GetUserJobsAsync(string userId);
+        Task<bool> UpdateJobStatusAsync(int jobId, string status, string userId);
     }
 }
