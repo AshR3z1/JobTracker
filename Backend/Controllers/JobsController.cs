@@ -50,5 +50,17 @@ namespace Backend.Controllers
             if (success) return Ok();
             return BadRequest("Could not update status");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteJob(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var success = await _jobService.DeleteJobAsync(id, userId);
+
+            if (success) return Ok();
+            return BadRequest("Could not delete the job.");
+        }
     }
 }

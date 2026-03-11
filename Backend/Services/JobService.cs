@@ -32,6 +32,16 @@ namespace Backend.Services
             return job;
         }
 
+        public async Task<bool> DeleteJobAsync(int jobId, string userId)
+        {
+            var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == jobId && j.UserId == userId);
+
+            if (job == null) return false;
+
+            _context.Jobs.Remove(job);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
         public async Task<IEnumerable<Job>> GetUserJobsAsync(string userId)
         {
             return await _context.Jobs

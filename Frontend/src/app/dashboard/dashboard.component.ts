@@ -64,4 +64,16 @@ export class DashboardComponent implements OnInit{
       }
     });
   }
+
+  deleteJob(jobId: number, companyName: string) {
+    if (confirm(`Are you sure you want to delete the job application for ${companyName}?`)) {
+      this.http.delete(`http://localhost:5000/api/jobs/${jobId}`).subscribe({
+        next: () => {
+          alert('Job Deleted!');
+          this.jobs = this.jobs.filter(job => job.id !== jobId);
+        },
+        error: (err) => console.error(err)
+      });
+    }
+  }
 }
