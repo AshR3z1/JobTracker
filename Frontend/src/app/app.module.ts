@@ -11,6 +11,7 @@ import { RegisterComponent } from "./register/register.component";
 import { JobAddComponent } from './job-add/job-add.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { authInterceptor } from './auth.interceptor';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { authInterceptor } from './auth.interceptor';
     LoginComponent,    
     RegisterComponent, 
     DashboardComponent,
-    JobAddComponent
+    JobAddComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

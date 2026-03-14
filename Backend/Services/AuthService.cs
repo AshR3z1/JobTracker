@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Backend.DTOs;
+using Backend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
@@ -9,10 +10,10 @@ namespace Backend.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _config;
 
-        public AuthService(UserManager<IdentityUser> userManager, IConfiguration config)
+        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration config)
         {
             _userManager = userManager;
             _config = config;
@@ -46,7 +47,7 @@ namespace Backend.Services
 
         public async Task<string> RegisterAsync(RegisterRequest request)
         {
-            var user = new IdentityUser {UserName = request.Email, Email = request.Email};
+            var user = new ApplicationUser {UserName = request.Email, Email = request.Email};
             var result = await _userManager.CreateAsync(user, request.Password);
 
             if (result.Succeeded) return "User Created";

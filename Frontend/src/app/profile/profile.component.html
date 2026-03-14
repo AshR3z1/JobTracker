@@ -1,0 +1,54 @@
+<div class="profile-page" style="max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+  
+  <h2 style="color: #1976d2; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">User Settings</h2>
+
+  <div style="display: flex; gap: 40px; align-items: flex-start;">
+    
+    <div style="flex: 1; text-align: center;">
+      <div style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px; border: 3px solid #1976d2; background: #eee;">
+        <img [src]="getFullImageUrl(profile.profilePicturePath)" 
+             style="width: 100%; height: 100%; object-fit: cover;"
+             (error)="profile.profilePicturePath = ''">
+      </div>
+      
+      <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none;">
+      <button (click)="fileInput.click()" style="background: #f0f0f0; border: 1px solid #ccc; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 13px;">
+        Change Photo
+      </button>
+    </div>
+
+    <div style="flex: 2;">
+      <form (ngSubmit)="saveProfile()" #profileForm="ngForm" style="display: flex; flex-direction: column; gap: 15px;">
+        
+        <div>
+          <label style="font-weight: bold; display: block;">Full Name</label>
+          <input type="text" [(ngModel)]="profile.fullName" name="fullName" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+        </div>
+
+        <div>
+          <label style="font-weight: bold; display: block;">Bio</label>
+          <textarea [(ngModel)]="profile.bio" name="bio" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 15px;">
+          <div style="flex: 1;">
+            <label style="font-weight: bold; display: block;">Date of Birth</label>
+            <input type="date" [(ngModel)]="profile.dateOfBirth" name="dateOfBirth" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+          </div>
+          <div style="flex: 1;">
+            <label style="font-weight: bold; display: block;">Gender</label>
+            <select [(ngModel)]="profile.gender" name="gender" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" style="background: #1976d2; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px;">
+          Save Profile Info
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,28 @@
-<app-register></app-register>
-<hr />
-<app-login></app-login>
-<app-job-add></app-job-add>
-<hr />
-<app-dashboard></app-dashboard>
+<header style="background: #1976d2; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+  <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" routerLink="/dashboard">
+    <span style="font-size: 1.5rem;">💼</span>
+    <h1 style="margin: 0; font-size: 1.25rem; letter-spacing: 1px;">JOBTRACKER PRO</h1>
+  </div>
+
+  <nav style="display: flex; gap: 20px;">
+    <a routerLink="/dashboard" routerLinkActive="active-link" style="color: white; text-decoration: none; font-weight: 500;">Dashboard</a>
+    <a routerLink="/add-job" routerLinkActive="active-link" style="color: white; text-decoration: none; font-weight: 500;">Add Job</a>
+    <a routerLink="/profile" routerLinkActive="active-link" style="color: white; text-decoration: none; font-weight: 500;">My Profile</a>
+    <a routerLink="/login" style="color: #ffeb3b; text-decoration: none; font-weight: bold; border: 1px solid #ffeb3b; padding: 4px 12px; border-radius: 4px; margin-left: 10px;">Login</a>
+  </nav>
+</header>
+
+<main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+  <router-outlet></router-outlet>
+</main>
+
+<footer style="text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; margin-top: 4rem; border-top: 1px solid #eee;">
+  &copy; 2026 JobTracker Pro - Your Career Assistant
+</footer>
+
+<style>
+  .active-link {
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
+  }
+</style>

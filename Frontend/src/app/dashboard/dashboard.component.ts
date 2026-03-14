@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit{
 
   statuses = ['Pending', 'Interviewing', 'Rejected', 'Accepted'];
 
+  expandJobId: number | null = null;
+
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -23,6 +25,10 @@ export class DashboardComponent implements OnInit{
       this.loadJobs();
     }
     
+  }
+
+  toggleDetails(jobId: number) {
+    this.expandJobId = this.expandJobId === jobId ? null : jobId;
   }
 
   getStat(status: string): number {

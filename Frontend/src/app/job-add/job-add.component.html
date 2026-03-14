@@ -1,27 +1,46 @@
-<div class="job-form-container">
-  <h3>Add New Job Application</h3>
+<div class="job-add-page" style="max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
   
-  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label>Company Name</label>
-      <input formControlName="companyName" placeholder="e.g. Google" />
+  <h2 style="color: #1976d2; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
+    🚀 Add New Application
+  </h2>
+  
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 20px;">
+    
+    <div class="form-group">
+      <label style="font-weight: bold; display: block; margin-bottom: 8px;">Company Name</label>
+      <input formControlName="companyName" placeholder="e.g. Google" 
+             style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
     </div>
 
-    <div>
-      <label>Position</label>
-      <input formControlName="position" placeholder="e.g. Software Engineer" />
+    <div class="form-group">
+      <label style="font-weight: bold; display: block; margin-bottom: 8px;">Position</label>
+      <input formControlName="position" placeholder="e.g. Software Engineer" 
+             style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
     </div>
 
-    <div>
-      <label>Description</label>
-      <textarea formControlName="description"></textarea>
+    <div class="form-group">
+      <label style="font-weight: bold; display: block; margin-bottom: 8px;">Description & Requirements</label>
+      <textarea formControlName="description" rows="5" placeholder="Paste job description here..."
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; font-family: inherit; resize: vertical;"></textarea>
     </div>
 
-    <div>
-      <label>Job Link</label>
-      <input formControlName="jobLink" placeholder="http://..." />
+    <div class="form-group">
+      <label style="font-weight: bold; display: block; margin-bottom: 8px;">Job Posting Link</label>
+      <input formControlName="jobLink" placeholder="https://linkedin.com/jobs/..." 
+             style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
     </div>
 
-    <button type="submit" [disabled]="jobForm.invalid">Save Job</button>
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+      <button type="submit" [disabled]="jobForm.invalid" 
+              [style.background]="jobForm.invalid ? '#ccc' : '#1976d2'"
+              style="flex: 2; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s;">
+        Save Application
+      </button>
+      
+      <button type="button" routerLink="/dashboard" 
+              style="flex: 1; background: #f0f0f0; color: #555; border: 1px solid #ddd; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+        Cancel
+      </button>
+    </div>
   </form>
 </div>

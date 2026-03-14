@@ -4,13 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-            
-        }
-
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
+        
         public DbSet<Job> Jobs { get; set; }
     }
 }
